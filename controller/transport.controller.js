@@ -16,7 +16,7 @@ const addTransportBill = async (req, res) => {
 
 const getTransportBill = async (req, res) => {
   try {
-    const getBillData = await Transport.find().sort({dataAdded: -1})
+    const getBillData = await Transport.find()
     return res.status(200).json({
       message: 'Data fetched successfully',
       result: getBillData,
