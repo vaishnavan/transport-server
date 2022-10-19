@@ -1,10 +1,10 @@
 const Transport = require('../model/transport.model')
 
-const addTransportBill = async (req, res) => {
+const addTransportBill = (req, res) => {
   try {
     const billData = req.body
     const transport = new Transport(billData)
-    await transport.save()
+    transport.save()
     return res.status(200).json({
       message: 'Data saved successfully',
       result: transport,
@@ -14,9 +14,9 @@ const addTransportBill = async (req, res) => {
   }
 }
 
-const getTransportBill = async (req, res) => {
+const getTransportBill = (req, res) => {
   try {
-    const getBillData = await Transport.find()
+    const getBillData = Transport.find()
     return res.status(200).json({
       message: 'Data fetched successfully',
       result: getBillData,
@@ -26,20 +26,20 @@ const getTransportBill = async (req, res) => {
   }
 }
 
-const updateTransportBill = async (req, res) => {
+const updateTransportBill = (req, res) => {
   try {
     const billData = req.body
     const transport = new Transport({ _id: req.params.id, ...billData })
-    await Transport.updateOne({ _id: req.params.id }, transport)
+    Transport.updateOne({ _id: req.params.id }, transport)
     return res.status(200).json({ message: 'Updated Successfully' })
   } catch (error) {
     return res.status(400).json({ message: error.message })
   }
 }
 
-const deleteTransportBill = async (req, res) => {
+const deleteTransportBill = (req, res) => {
   try {
-    await Transport.deleteOne({ _id: req.params.id })
+    Transport.deleteOne({ _id: req.params.id })
     return res.status(200).json({ message: 'Removed Successfully' })
   } catch (error) {
     return res.status(400).json({ message: error.message })
@@ -50,5 +50,5 @@ module.exports = {
   addTransportBill,
   getTransportBill,
   updateTransportBill,
-  deleteTransportBill
+  deleteTransportBill,
 }
