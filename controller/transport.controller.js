@@ -15,15 +15,18 @@ const addTransportBill = (req, res) => {
 }
 
 const getTransportBill = (req, res) => {
-  try {
-    const getBillData = Transport.find()
-    return res.status(200).json({
-      message: 'Data fetched successfully',
-      result: getBillData,
-    })
-  } catch (error) {
-    return res.status(400).json({ message: error.message })
-  }
+  Transport.find().then((data) => {
+    res.json(data)
+  })
+  // try {
+  //   const getBillData = Transport.find()
+  //   return res.status(200).json({
+  //     message: 'Data fetched successfully',
+  //     result: getBillData,
+  //   })
+  // } catch (error) {
+  //   return res.status(400).json({ message: error.message })
+  // }
 }
 
 const updateTransportBill = (req, res) => {
