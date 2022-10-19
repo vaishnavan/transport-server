@@ -9,6 +9,10 @@ require('dotenv').config()
 app.use(cors())
 app.use(express.json())
 
+app.get('/api/v1/', (req, res) => {
+    return res.json({message: "Transport API"})
+})
+
 app.use('/api/v1', require('./router/user.router'))
 app.use('/api/v1', require('./router/transport.router'))
 
