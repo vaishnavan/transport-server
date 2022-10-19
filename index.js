@@ -12,9 +12,11 @@ app.use(express.json())
 app.use('/api/v1', require('./router/user.router'))
 app.use('/api/v1', require('./router/transport.router'))
 
-app.listen(port, () => {
+var serverApp = app.listen(port, () => {
     console.log(`server up and running on ports ${port}`)
 })
+
+serverApp.timeout = 120000
 
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true }, err => {
     if (!err) {
